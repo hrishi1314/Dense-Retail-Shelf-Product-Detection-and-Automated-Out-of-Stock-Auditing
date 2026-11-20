@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.streamlit/secrets.toml
+datasets/
+runs/
+*.zip
+.ipynb_checkpoints/
+# Track trained weights only if small enough for GitHub (<100 MB); remove next line to commit models/best.pt
+# models/*.pt
+
+# auto-downloaded placeholder weights
+yolov8n.pt
+yolov8s.pt
+yolov8m.pt
+*.onnx
