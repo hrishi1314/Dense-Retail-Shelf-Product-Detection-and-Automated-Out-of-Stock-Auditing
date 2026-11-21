@@ -26,7 +26,7 @@ st.caption("YOLOv8 detects tightly packed products; spatial clustering finds the
 with st.sidebar:
     st.header("Detection")
     conf = st.slider("Confidence threshold", 0.05, 0.90, 0.25, 0.05)
-    iou = st.slider("NMS IoU threshold", 0.30, 0.90, 0.60, 0.05,
+    iou = st.slider("NMS IoU threshold", 0.30, 0.90, 0.50, 0.05,
                     help="Higher keeps more overlapping boxes - useful on dense shelves.")
     imgsz = st.select_slider("Inference size", [640, 800, 960, 1280], value=960)
     max_det = st.slider("Max detections", 100, 1000, 600, 50)
@@ -73,16 +73,16 @@ c4.metric("Est. missing facings", int(sum(g.est_missing for g in gaps)))
 
 left, right = st.columns(2)
 left.subheader("Original")
-left.image(image, use_container_width=True)
+left.image(image, width="stretch")
 right.subheader("Audit result (red = out-of-stock gap)")
-right.image(audited, use_container_width=True)
+right.image(audited, width="stretch")
 
 # ---------------- Report ----------------
 st.subheader("Gap report")
 if gaps:
     df = pd.DataFrame([g.as_dict() for g in gaps])
     df["row"] = df["row"] + 1
-    st.dataframe(df, use_container_width=True, hide_index=True)
+    st.dataframe(df, width="stretch", hide_index=True)
     st.download_button("Download gap report (CSV)", df.to_csv(index=False).encode(),
                        "out_of_stock_report.csv", "text/csv")
 else:
